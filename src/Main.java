@@ -568,7 +568,7 @@ public class Main {
                 } else if (i >= 7) {
                     printOutArray(timer);
                     break;
-                } else System.out.print("- ");
+                } else System.out.print("  ");
             }
             System.out.println("");
         }
