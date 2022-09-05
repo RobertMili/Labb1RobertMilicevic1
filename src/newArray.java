@@ -3,13 +3,14 @@ public class newArray {                                                         
     public String time;
     public int input;
 
+
     public newArray(String time, int input) {
         this.time = time;
         this.input = input;
     }
 
     public void display() {
-        System.out.println(time + " - " + time + " - " + + input + " öre \n");
+        System.out.println(time + " - " + time + " - " + input + " öre \n");
     }
 
     public String getTime() {
@@ -21,11 +22,11 @@ public class newArray {                                                         
     }
 
     public int getInput() {
-        System.out.println(input);
         return input;
     }
 
     public void setInput(int input) {
         this.input = input;
     }
+
 }

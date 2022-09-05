@@ -2,23 +2,26 @@
 printa kryss med char in denna diagram
  */
 
-import java.util.Arrays;
-import java.util.Scanner;
+import java.util.*;
+
 
 public class Main {
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
-        Scanner in = new Scanner(System.in);
 
         int[] input = new int[24];                                                                                       // array for input
-        String[] timer = {"00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14",      // array for time
-                "15", "16", "17", "18", "19", "20", "21", "22", "23","00"};
+        String[] timer = {"00 - 01", "01 - 02", "02 - 03", "03 - 04", "04 - 05", "05 - 06", "06 - 07", "07 - 08",       // array for tiden
+                "08 - 09", "09 - 10", "10 - 11", "11 - 12", "12 - 13", "13 - 14", "14 - 15",
+                "15 - 16", "16 - 17", "17 - 18", "18 - 19", "19 - 20", "20 - 21", "21 - 22", "22 - 23", "23 - 00"};
+        String[] tiden = {"00", "01", "02", "03", "04", "05", "06", "07",                                               // array for tiden att skriva ut i diagram
+                "08", "09", "10", "11", "12", "13", "14",
+                "15", "16", "17", "18", "19", "20", "21", "22", "23"};
         // System.out.println(Arrays.toString(new String[]{timer[1]}));
-        newArray[] newInputWithTime = new newArray[24];
 
+        Map<Integer,String> mapOfList = new HashMap<>();                                                                // HashMap för att addera Integer och String så kan senare sortera och printa ut
 
-        boolean goingThroughtProgram = true;
+        boolean goingThroughtProgram = true;                                                                            // Den gå i while loop tills bli true så ska avsluta program
 
         while (goingThroughtProgram) {                                                                                   //Program ska repetara till man trycker e eller E för att gå ut
             boolean goingThroughtProgramTwo = true;
@@ -36,20 +39,10 @@ public class Main {
             if (sc.hasNextInt()) {                                                                                      // Input för välja meny
                 int choice = sc.nextInt();
 
-                for (int i = 0; i < 24; i++) {
-                    newInputWithTime[i] = new newArray(timer[i], input[i]);
-                }
+
 
                 if (choice == 1) {
-                    System.out.println("Matta in pris under dygnets timmar: ");
-
-
-                    for (int i = 0; i < input.length; i++) {                                                            // Skriver ut tiden och ta input för el pris från user
-                        System.out.println("Matta in pris unde: " + timer[i] + " - " + timer[i + 1]);
-                        input[i] = sc.nextInt();
-
-                    }
-
+                    choice1(sc, input, timer, mapOfList);
 
                 } else if (choice == 2) {                                                                               // Andra meny öppnar när man trycker 2
 
@@ -65,58 +58,28 @@ public class Main {
                         int choiceThrouMinMax = sc.nextInt();
                         int sumTwo = 0;
 
-                        if (choiceThrouMinMax == 1) {                                                                   // Räknar genomsnit
-                            for (int i = 0; i < input.length; i++) {
-                                sumTwo += input[i];
-                            }
-                            int average = sumTwo / 2;
-                            System.out.println("Medel av elpris är " + average);
-                        } else if (choiceThrouMinMax == 2) {                                                            // Räknar MIN tal genom att sortera med bubble sort algoritam så tar första talet
-                            bubbleSortering(input);         // calling bubble sortering
-                            int minNumber = input[0];
-                            System.out.println("Den här minmum pris elpirs är: " + minNumber + " öre");
-
-                        } else if (choiceThrouMinMax == 3) {
-                            bubbleSortering(input);
-                            int maxNumber = input[2];
-                            System.out.println("Den här är max pris på elpris är : " + maxNumber + " öre");             // Räknar MAX tal genom att sortera med bubble sort algoritam och tar sista tal och skriver ut
-                        } else {
-                            if (choiceThrouMinMax == 4) {
-                                System.out.println("Du valde EXIT till main meny ");
-                                goingThroughtProgramTwo = false;
-                            } else {
-                                System.out.println("Du har väljat fel, prova igen");
-                            }
-                        }
+                        goingThroughtProgramTwo = menyAverageMinMax(input, goingThroughtProgramTwo, choiceThrouMinMax, sumTwo);
                     }
 
                 } else if (choice == 3) {                                                                               // Sortering genom Arrays.sort, man kan sortera också med bubble sortering method som jag hade skrivit
                     System.out.println("Sorterad");
 
-                    Arrays.sort(timer);
-                    Arrays.sort(input);
+                    sortingHashMap((HashMap<Integer, String>) mapOfList);
 
-                    for (int i = 0; i < input.length; i++) {
-                        System.out.println(timer[i] + " - " + timer[i + 1] + " - " + input[i] + " öre");
-                    }
-                    Arrays.sort(timer);
-                    Arrays.sort(input);
+
 
                 } else if (choice == 4) {
                     System.out.println("Bästa laddningstid (4 h) : ");                                                  // Skriver bästa tid för laddning och den är första 4 tiden på natten
 
-                    for (int i = 0; i < 4; i++) {
-                        System.out.println(timer[i] + " - " + timer[i + 1] + " - " + input[i] + " öre");
-                    }
+                    bestCharchingTime(input, timer);
                 } else if (choice == 5) {
                     System.out.println("5. Visualisering (VG uppgift)");
-                    tabelVG(input, timer);
+                    tabelVG(input, tiden);
 
                 }
             } else {
 
                 String choice = sc.nextLine();                                                                           // Avslutar program genom att trycka e eller E
-
 
                 if (choice.equals("e") || choice.equals("E")) {
 
@@ -129,22 +92,82 @@ public class Main {
         }
     }
 
-    public static int[] bubbleSortering(int[] list) {                                                                   // Bubble sortering algoritam
+    private static void bestCharchingTime(int[] input, String[] timer) {
+        for (int i = 0; i < 4; i++) {
+            System.out.println(timer[i]+"   " + input[i] + " öre");
+        }
+    }
+
+    private static boolean menyAverageMinMax(int[] input, boolean goingThroughtProgramTwo, int choiceThrouMinMax, int sumTwo) {
+        if (choiceThrouMinMax == 1) {                                                                   // Räknar genomsnit
+            for (int i = 0; i < input.length; i++) {
+                sumTwo += input[i];
+            }
+            int average = sumTwo / 2;
+            System.out.println("Medel av elpris är " + average);
+        } else if (choiceThrouMinMax == 2) {                                                            // Räknar MIN tal genom att sortera med bubble sort algoritam så tar första talet
+            bubbleSortering(input);         // calling bubble sortering
+            int minNumber = input[0];
+            System.out.println("Den här minmum pris elpirs är: " + minNumber + " öre");
+
+        } else if (choiceThrouMinMax == 3) {
+            bubbleSortering(input);
+            int maxNumber = input[23];
+            System.out.println("Den här är max pris på elpris är : " + maxNumber + " öre");             // Räknar MAX tal genom att sortera med bubble sort algoritam och tar sista tal och skriver ut
+        } else {
+            if (choiceThrouMinMax == 4) {
+                System.out.println("Du valde EXIT till main meny ");
+                goingThroughtProgramTwo = false;
+            } else {
+                System.out.println("Du har väljat fel, prova igen");
+            }
+        }
+        return goingThroughtProgramTwo;
+    }
+
+    private static void choice1(Scanner sc, int[] input, String[] timer, Map<Integer, String> mapOfList) {
+        System.out.println("Matta in pris under dygnets timmar: ");
+
+
+        for (int i = 0; i < input.length; i++) {                                                            // Skriver ut tiden och ta input för el pris från user
+            System.out.println("Matta in pris unde: " + timer[i]);
+            input[i] = sc.nextInt();
+
+            mapOfList.put(input[i], timer[i]);
+
+        }
+    }
+
+
+    public static void sortingHashMap(HashMap<Integer,String>mapOfList) {                                               // Method för soreting Hash map med TreeMap
+
+        TreeMap<Integer, String> tm = new TreeMap<Integer, String>(mapOfList);
+        Iterator itr = tm.keySet().iterator();
+        while (itr.hasNext()) {
+            int key = (int) itr.next();
+
+            System.out.println(mapOfList.get(key) + "  " + key + " öre");
+
+        }
+    }
+
+    public static int[] bubbleSortering(int[] input) {                                                                   // Bubble sortering algoritam
         boolean sortingBubble = true;
 
         while (sortingBubble) {
             sortingBubble = false;
-            for (int i = 0; i < list.length - 1; i++) {
-                if (list[i] > list[i + 1]) {
-                    int temp = list[i + 1];
-                    list[i + 1] = list[i];
-                    list[i] = temp;
+            for (int i = 0; i < input.length - 1; i++) {
+                if (input[i] > input[i + 1]) {
+                    int temp = input[i + 1];
+                    input[i + 1] = input[i];
+                    input[i] = temp;
                     sortingBubble = true;
                 }
             }
         }
-        return list;
+        return input;
     }
+
 
     public static void tabelVG(int[] input, String[] timer) {                                                           // Skriver ut tabel
 
@@ -341,7 +364,7 @@ public class Main {
                 else if (input[10] > 60  && j == 22 && i <= 6)
                     System.out.print("x ");
 
-                else if (input[11] > 0 && input[1] <= 10 && j == 24 && i == 6)                                               // input [11] printing out in tabel
+                else if (input[11] > 0 && input[11] <= 10 && j == 24 && i == 6)                                               // input [11] printing out in tabel
                     System.out.print("x ");
                 else if (input[11] > 10 && input[11] <= 20 && j == 24 && i <= 6 && i >= 5)
                     System.out.print("x ");
@@ -553,11 +576,12 @@ public class Main {
 
 
 
-    public static String[] printOutArray (String[]timer){                                                           // Method för skriva ut array time i tabel i hela row 7
+    public static String[] printOutArray (String[]tiden){                                                           // Method för skriva ut array time i tabel i hela row 7
+
         for (int i = 0; i < 24; i++) {
-            System.out.print(timer[i] + " ");
+            System.out.print(tiden[i] + " ");
         }
-        return timer;
+        return tiden;
     }
 }
 
