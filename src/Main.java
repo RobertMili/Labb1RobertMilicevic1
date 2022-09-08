@@ -4,13 +4,6 @@ printa kryss med char in denna diagram
 
 import java.util.*;
 
-class Tiden {
-    String time;
-    int cost;
-    int x = 0;
-}
-
-
 public class Main {
 
 
@@ -18,22 +11,111 @@ public class Main {
 
         Scanner sc = new Scanner(System.in);
 
-        int[] input = new int[3];                                                                                       // array for input
+        int[] input = new int[24];                                                                                       // array for input
 
-        Tiden times[] = new Tiden[input.length];
+        Tiden times[] = new Tiden[24];
 
+
+        times[0] = new Tiden();
+        times[0].time = "00-01";
+        times[0].setCost(100);
+
+        times[1] = new Tiden();
+        times[1].time = "01-02";
+        times[1].setCost(100);
+
+        times[2] = new Tiden();
+        times[2].time = "02-03";
+        times[2].setCost(100);
+
+        times[3] = new Tiden();
+        times[3].time = "03-04";
+        times[3].setCost(100);
+
+        times[4] = new Tiden();
+        times[4].time = "04-05";
+        times[4].setCost(55);
+
+        times[5] = new Tiden();
+        times[5].time = "05-06";
+        times[5].setCost(20);
+
+        times[6] = new Tiden();
+        times[6].time = "06-07";
+        times[6].setCost(20);
+
+        times[7] = new Tiden();
+        times[7].time = "07-08";
+        times[7].setCost(20);
+
+        times[8] = new Tiden();
+        times[8].time = "08-09";
+        times[8].setCost(34);
+
+        times[9] = new Tiden();
+        times[9].time = "09-10";
+        times[9].setCost(1);
+
+        times[10] = new Tiden();
+        times[10].time = "10-11";
+        times[10].setCost(45);
+
+        times[11] = new Tiden();
+        times[11].time = "11-12";
+        times[11].setCost(55);
+
+        times[12] = new Tiden();
+        times[12].time = "12-13";
+        times[12].setCost(34);
+
+        times[13] = new Tiden();
+        times[13].time = "13-14";
+        times[13].setCost(45);
+
+        times[14] = new Tiden();
+        times[14].time = "14-15";
+        times[14].setCost(99);
+
+        times[15] = new Tiden();
+        times[15].time = "15-16";
+        times[15].setCost(67);
+
+        times[16] = new Tiden();
+        times[16].time = "16-17";
+        times[16].setCost(45);
+
+        times[17] = new Tiden();
+        times[17].time = "17-18";
+        times[17].setCost(15);
+
+        times[18] = new Tiden();
+        times[18].time = "18-19";
+        times[18].setCost(34);
+
+        times[19] = new Tiden();
+        times[19].time = "19-20";
+        times[19].setCost(66);
+
+        times[20] = new Tiden();
+        times[20].time = "20-21";
+        times[20].setCost(66);
+
+        times[21] = new Tiden();
+        times[21].time = "21-22";
+        times[21].setCost(34);
+
+        times[22] = new Tiden();
+        times[22].time = "22-23";
+        times[22].setCost(23);
+
+        times[23] = new Tiden();
+        times[23].time = "22-23";
+        times[23].setCost(143);
 
 
         String[] timer = {"00 - 01", "01 - 02", "02 - 03", "03 - 04", "04 - 05", "05 - 06", "06 - 07", "07 - 08",       // array for tiden
-                "08 - 09", "09 - 10", "10 - 11", "11 - 12", "12 - 13", "13 - 14", "14 - 15", "15 - 16", "16 - 17", "17 - 18", "18 - 19", "19 - 20", "20 - 21", "21 - 22", "22 - 23", "23 - 00"};
-
-
-        String[] newArraySecond = new String[input.length];
-
-        String[] tiden = {"00", "01", "02", "03", "04", "05", "06", "07",                                               // array for tiden att skriva ut i diagram
-                "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"};
-        // System.out.println(Arrays.toString(new String[]{timer[1]}));
-
+                "08 - 09", "09 - 10", "10 - 11", "11 - 12", "12 - 13", "13 - 14", "14 - 15", "15 - 16", "16 - 17", "17 - 18",
+                "18 - 19", "19 - 20", "20 - 21", "21 - 22", "22 - 23", "23 - 00"};
 
         boolean goingThroughtProgram = true;                                                                            // Den gå i while loop tills bli true så ska avsluta program
 
@@ -53,31 +135,13 @@ public class Main {
             if (sc.hasNextInt()) {                                                                                      // Input för välja meny
                 int choice = sc.nextInt();
 
-
                 if (choice == 1) {
                     System.out.println("Matta in pris under dygnets timmar: ");
 
 
                     for (int i = 0; i < input.length; i++) {                                                            // Skriver ut tiden och ta input för el pris från user
                         System.out.println("Matta in pris under: " + timer[i]);
-                       // input[i] = sc.nextInt();
-
-
-                        times[0] = new Tiden();
-                        times[0].time = "00-01";
-                        times[0].cost = input[0];
-
-                        times[1] = new Tiden();
-                        times[1].time = "01-02";
-                        times[1].cost = input[1];
-
-                        times[2] = new Tiden();
-                        times[2].time = "02-03";
-                        times[2].cost = input[2];
-
-
-//                        mapOfList.put(input[i], timer[i]);
-
+                        // input[i] = sc.nextInt();
                     }
                 } else if (choice == 2) {                                                                               // Andra meny öppnar när man trycker 2
 
@@ -92,24 +156,20 @@ public class Main {
 
                         int choiceThrouMinMax = sc.nextInt();
                         int sumTwo = 0;
-
-
                     }
 
                 } else if (choice == 3) {                                                                               // Sortering genom Arrays.sort, man kan sortera också med bubble sortering method som jag hade skrivit
 
-
                     bubbleSorteringOfTime(times);
-
-
 
                 } else if (choice == 4) {
                     System.out.println("Bästa laddningstid (4 h) : ");                                                  // Skriver bästa tid för laddning och den är första 4 tiden på natten
 
-                    bestCharchingTime(input, timer);
+                    bestCharchingTime(times);
+                    // bestCharchingTime(input, timer);
                 } else if (choice == 5) {
                     System.out.println("5. Visualisering (VG uppgift)");
-                    tabelVG(input, tiden);
+                    tabelVG(input);
 
                 }
             } else {
@@ -127,10 +187,38 @@ public class Main {
         }
     }
 
-    private static void bestCharchingTime(int[] input, String[] timer) {
-        for (int i = 0; i < 4; i++) {
-            System.out.println(timer[i] + "   " + input[i] + " öre");
+    private static void bestCharchingTime(Tiden[] times) {
+
+
+        Tiden[] timerClone = times.clone();
+
+
+        int fourHourPris = 0;
+        int bestPris = Integer.MAX_VALUE;
+        double genomsnitBestaPris = 0;
+        double prisForBestaLaddning = 0;
+        String testBestPris = "";
+
+        for (int i = 0; i < timerClone.length; i++) {
+            if (i == timerClone.length - 3) {
+                break;
+            }
+            fourHourPris = timerClone[i].getCost() + timerClone[i + 1].getCost() + timerClone[i + 2].getCost() + timerClone[i + 3].getCost();
+            if (fourHourPris < bestPris) {
+                bestPris = fourHourPris;
+                testBestPris = timerClone[i].time + " " + timerClone[i].getCost() + "  \n" + timerClone[i + 1].time + " " + timerClone[i + 1].getCost() +
+                        "  \n" + timerClone[i + 2].time + " " + timerClone[i + 2].getCost() + "  \n" + timerClone[i + 3].time + " " + timerClone[i + 3].getCost();
+
+                prisForBestaLaddning = timerClone[i].getCost() + timerClone[i + 1].getCost() + timerClone[i + 2].getCost() + timerClone[i + 3].getCost();
+            }
+            genomsnitBestaPris = prisForBestaLaddning / 2;
+
         }
+
+
+        System.out.println(testBestPris);
+        System.out.println(genomsnitBestaPris + " - är genomsnit pris för bästa laddning");
+
     }
 
     private static boolean menyAverageMinMax(int[] input, boolean goingThroughtProgramTwo, int choiceThrouMinMax, int sumTwo) {
@@ -162,16 +250,18 @@ public class Main {
 
     public static void bubbleSorteringOfTime(Tiden times[]) {
         Tiden[] copy = times.clone();
+
         boolean sortingBubble = true;
 
         while (sortingBubble) {
             sortingBubble = false;
             for (int i = 0; i < copy.length - 1; i++) {
-                if (copy[i].cost > copy[i + 1].cost) {
+                if (copy[i].getCost() > copy[i + 1].getCost()) {
                     Tiden temp = copy[i + 1];
                     copy[i + 1] = copy[i];
                     copy[i] = temp;
                     sortingBubble = true;
+
                 }
             }
         }
@@ -179,6 +269,7 @@ public class Main {
             System.out.println(copy[i].time + " " + copy[i].cost + " öre");
         }
     }
+
     public static int[] bubbleSortering(int[] input) {                                                                   // Bubble sortering algoritam
         boolean sortingBubble = true;
 
@@ -195,7 +286,14 @@ public class Main {
         }
         return input;
     }
-    public static void tabelVG(int[] input, String[] timer) {                                                           // Skriver ut tabel
+
+    public static void tabelVG(int[] input) {                                                           // Skriver ut tabel
+
+
+        String[] tiden = {"00", "01", "02", "03", "04", "05", "06", "07",                                               // array for tiden att skriva ut i diagram
+                "08", "09", "10", "11", "12", "13", "14", "15", "16", "17",
+                "18", "19", "20", "21", "22", "23"};
+
 
         int[][] rowColumns = new int[8][51];
 
@@ -424,7 +522,8 @@ public class Main {
 
                 else if (input[23] > 0 && input[23] <= 10 && j == 48 && i == 6)
                     System.out.print("x ");
-                else if (input[23] > 10 && input[23] <= 20 && j == 48 && i <= 6 && i >= 5) System.out.print("x ");      // input [23] printing out in tabel
+                else if (input[23] > 10 && input[23] <= 20 && j == 48 && i <= 6 && i >= 5)
+                    System.out.print("x ");      // input [23] printing out in tabel
                 else if (input[23] > 20 && input[23] <= 30 && j == 48 && i <= 6 && i >= 4) System.out.print("x ");
                 else if (input[23] > 30 && input[23] <= 40 && j == 48 && i <= 6 && i >= 3) System.out.print("x ");
                 else if (input[23] > 40 && input[23] <= 50 && j == 48 && i <= 6 && i >= 2) System.out.print("x ");
@@ -438,7 +537,7 @@ public class Main {
                         == 50 || i == 7 && j == 50) {
                     System.out.print(" ");
                 } else if (i >= 7) {
-                    printOutArray(timer);
+                    printOutArray(tiden);
                     break;
                 } else System.out.print("  ");
             }
