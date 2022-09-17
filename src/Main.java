@@ -191,7 +191,7 @@ public class Main {
 
                 } else if (choice == 3) {                                                                               // Sortering genom Arrays.sort, man kan sortera också med bubble sortering method som jag hade skrivit
 
-                    bubbleSorteringOfTime(prisTidenArray);
+                    bubbleSorteringOfPrisAndTimeWillFollowIT(prisTidenArray);
 
                 } else if (choice == 4) {
                     System.out.println("Bästa laddningstid (4 h) : ");                                                  // Skriver bästa tid för laddning och den är första 4 tiden på natten
@@ -272,7 +272,7 @@ public class Main {
                 "  \n" + timerClone[i + 2].time + " " + timerClone[i + 2].getCost() + "  \n" + timerClone[i + 3].time + " " + timerClone[i + 3].getCost();
     }
 
-    public static void bubbleSorteringOfTime(PrisTiden prisTidenArray[]) {
+    public static void bubbleSorteringOfPrisAndTimeWillFollowIT(PrisTiden prisTidenArray[]) {
         PrisTiden[] prisTidenArrayCopy = prisTidenArray.clone();
 
         boolean sortingBubble = true;
@@ -561,7 +561,7 @@ public class Main {
                         == 50 || i == 7 && j == 50) {
                     System.out.print(" ");
                 } else if (i >= 7) {
-                    printOutArray(tiden);
+                    printOutTiden(tiden);
                     break;
                 } else System.out.print("  ");
             }
@@ -570,7 +570,7 @@ public class Main {
     }
 
 
-    public static String[] printOutArray(String[] tiden) {                                                           // Method för skriva ut array time i tabel i hela row 7
+    public static String[] printOutTiden(String[] tiden) {                                                           // Method för skriva ut array time i tabel i hela row 7
 
         for (int i = 0; i < 24; i++) {
             System.out.print(tiden[i] + " ");
