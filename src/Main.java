@@ -6,238 +6,211 @@ import java.util.*;
 
 public class Main {
 
-
     public static void main(String[] args) {
-
         Scanner sc = new Scanner(System.in);
 
-        String[] tidenArray= {"00 - 01", "01 - 02", "02 - 03", "03 - 04", "04 - 05", "05 - 06", "06 - 07", "07 - 08",       // array for tiden
-                "08 - 09", "09 - 10", "10 - 11", "11 - 12", "12 - 13", "13 - 14", "14 - 15",
-                "15 - 16", "16 - 17", "17 - 18", "18 - 19", "19 - 20", "20 - 21", "21 - 22", "22 - 23", "23 - 00"};
+        int[] inputPrice = new int[24];                                                                                      // array for inputPrice
 
-        int[] input = new int[24];                                                                                       // array for input
+        String[] tidenArray = new String[inputPrice.length];
 
-        PrisTiden prisTidenArray[] = new PrisTiden[input.length];
+        printOut_0_to_24_Time(tidenArray);
 
-//
-//
-//        prisTidenArray[0] = new Tiden();
-//        prisTidenArray[0].time = "00-01";
-//        prisTidenArray[0].setCost(1);
-//
-//        prisTidenArray[1] = new Tiden();
-//        prisTidenArray[1].time = "01-02";
-//        prisTidenArray[1].setCost(1);
-//
-//        prisTidenArray[2] = new Tiden();
-//        prisTidenArray[2].time = "02-03";
-//        prisTidenArray[2].setCost(1);
-//
-//        prisTidenArray[3] = new Tiden();
-//        prisTidenArray[3].time = "03-04";
-//        prisTidenArray[3].setCost(1);
-//
-//        prisTidenArray[4] = new Tiden();
-//        prisTidenArray[4].time = "04-05";
-//        prisTidenArray[4].setCost(1);
-//
-//        prisTidenArray[5] = new Tiden();
-//        prisTidenArray[5].time = "05-06";
-//        prisTidenArray[5].setCost(1);
-//
-//        prisTidenArray[6] = new Tiden();
-//        prisTidenArray[6].time = "06-07";
-//        prisTidenArray[6].setCost(1);
-//
-//        prisTidenArray[7] = new Tiden();
-//        prisTidenArray[7].time = "07-08";
-//        prisTidenArray[7].setCost(1);
-//
-//        prisTidenArray[8] = new Tiden();
-//        prisTidenArray[8].time = "08-09";
-//        prisTidenArray[8].setCost(1);
-//
-//        prisTidenArray[9] = new Tiden();
-//        prisTidenArray[9].time = "09-10";
-//        prisTidenArray[9].setCost(1);
-//
-//        prisTidenArray[10] = new Tiden();
-//        prisTidenArray[10].time = "10-11";
-//        prisTidenArray[10].setCost(1);
-//
-//        prisTidenArray[11] = new Tiden();
-//        prisTidenArray[11].time = "11-12";
-//        prisTidenArray[11].setCost(1);
-//
-//        prisTidenArray[12] = new Tiden();
-//        prisTidenArray[12].time = "12-13";
-//        prisTidenArray[12].setCost(1);
-//
-//        prisTidenArray[13] = new Tiden();
-//        prisTidenArray[13].time = "13-14";
-//        prisTidenArray[13].setCost(1);
-//
-//        prisTidenArray[14] = new Tiden();
-//        prisTidenArray[14].time = "14-15";
-//        prisTidenArray[14].setCost(1);
-//
-//        prisTidenArray[15] = new Tiden();
-//        prisTidenArray[15].time = "15-16";
-//        prisTidenArray[15].setCost(1);
-//
-//        prisTidenArray[16] = new Tiden();
-//        prisTidenArray[16].time = "16-17";
-//        prisTidenArray[16].setCost(1);
-//
-//        prisTidenArray[17] = new Tiden();
-//        prisTidenArray[17].time = "17-18";
-//        prisTidenArray[17].setCost(1);
-//
-//        prisTidenArray[18] = new Tiden();
-//        prisTidenArray[18].time = "18-19";
-//        prisTidenArray[18].setCost(1);
-//
-//        prisTidenArray[19] = new Tiden();
-//        prisTidenArray[19].time = "19-20";
-//        prisTidenArray[19].setCost(1);
-//
-//        prisTidenArray[20] = new Tiden();
-//        prisTidenArray[20].time = "20-21";
-//        prisTidenArray[20].setCost(1);
-//
-//        prisTidenArray[21] = new Tiden();
-//        prisTidenArray[21].time = "21-22";
-//        prisTidenArray[21].setCost(1);
-//
-//        prisTidenArray[22] = new Tiden();
-//        prisTidenArray[22].time = "22-23";
-//        prisTidenArray[22].setCost(3);
-//
-//        prisTidenArray[23] = new Tiden();
-//        prisTidenArray[23].time = "22-23";
-//        prisTidenArray[23].setCost(2);
+        PrisTiden prisTidenObject[] = new PrisTiden[inputPrice.length];
 
+        boolean isEnabledMeny = true;
 
-        boolean goingThroughtProgram = true;                                                                            // Den gå i while loop tills bli true så ska avsluta program
-
-        while (goingThroughtProgram) {                                                                                   //Program ska repetara till man trycker e eller E för att gå ut
-            boolean goingThroughtProgramTwo = true;
+        while (isEnabledMeny) {
+            boolean isEnabledSecondMeny = true;
 
             System.out.println();
-            System.out.println("Elpriser");
-            System.out.println("========");
-            System.out.println("1. Inmatning");
-            System.out.println("2. Min,Max och Medel");
-            System.out.println("3. Sortera");
-            System.out.println("4. Bästa Laddningstid (4h)");
-            System.out.println("5. Visualisering (VG uppgift)");
-            System.out.println("e. avsluta");
 
-            if (sc.hasNextInt()) {                                                                                      // Input för välja meny
+
+            mainMeny();
+
+            if (sc.hasNextInt()) {
                 int choice = sc.nextInt();
 
                 if (choice == 1) {
-                    System.out.println("Matta in pris under dygnets timmar: ");
+                    System.out.println("Mata in priset under dygnets timmar: ");
+                    inmatning(sc, inputPrice, tidenArray, prisTidenObject);
 
+                } else if (choice == 2) {                                        // Andra meny öppnar när man trycker 2
+                    secondMenyMinMaxAverage(choice, prisTidenObject, isEnabledSecondMeny,sc);
 
-                    for (int i = 0; i < input.length; i++) {                                                            // Skriver ut tiden och ta input för el pris från user
-                        System.out.println("Matta in pris under: " + tidenArray[i]);
-                          input[i] = sc.nextInt();
-
-                    }
-
-                    conectInputArrayWithTidenClass(tidenArray, input, prisTidenArray);
-
-
-                } else if (choice == 2) {                                                                               // Andra meny öppnar när man trycker 2
-
-                    while (goingThroughtProgramTwo) {
-                        goingThroughtProgramTwo = true;
-
-                        System.out.println("Välja:");
-                        System.out.println("1. Medel av elpris:");
-                        System.out.println("2. Min av elpris");
-                        System.out.println("3. Max av elpris");
-                        System.out.println("4. Exit");
-
-                        int choiceThrouMinMax = sc.nextInt();
-                        double sumTwo = 0;
-
-                        if (choiceThrouMinMax == 1) {                                                                   // Räknar genomsnit
-                            double average = getAverage(prisTidenArray, sumTwo);
-                            System.out.println("Medel av elpris är " + average);
-
-                        } else if (choiceThrouMinMax == 2) {                                                            // Räknar MIN tal genom att sortera med bubble sort algoritam så tar första talet
-                            bubbleSorteringMinAndMax(input);                                                                     // calling bubble sortering
-
-                            int minNumber = input[0];
-                            System.out.println("Den här minmum pris elpirs är: " + minNumber + " öre");
-
-                        } else if (choiceThrouMinMax == 3) {
-                            bubbleSorteringMinAndMax(input);
-
-                            int maxNumber = input[23];
-                            System.out.println("Den här är max pris på elpris är : " + maxNumber + " öre");             // Räknar MAX tal genom att sortera med bubble sort algoritam och tar sista tal och skriver ut
-
-                        } else {
-                            if (choiceThrouMinMax == 4) {
-                                System.out.println("Du valde EXIT till main meny ");
-                                goingThroughtProgramTwo = false;
-                            } else {
-                                System.out.println("Du har väljat fel, prova igen");
-                            }
-                        }
-                    }
-
-                } else if (choice == 3) {                                                                               // Sortering genom Arrays.sort, man kan sortera också med bubble sortering method som jag hade skrivit
-
-                    bubbleSorteringOfPrisAndTimeWillFollowIT(prisTidenArray);
+                } else if (choice == 3) {
+                    sorteringPrisTidenConnect_PrintOut(prisTidenObject);
 
                 } else if (choice == 4) {
-                    System.out.println("Bästa laddningstid (4 h) : ");                                                  // Skriver bästa tid för laddning och den är första 4 tiden på natten
-
-                    bestCharchingTime(prisTidenArray);
+                    System.out.println("Bästa laddningstid (4 h) : ");
+                    bestChargingTime(prisTidenObject);
 
                 } else if (choice == 5) {
-                    System.out.println("5. Visualisering (VG uppgift)");
-                    tabelVG(input);
-
+                    System.out.println("5. Visualisering :");
+                    tableVG(inputPrice);
                 }
             } else {
 
-                String choice = sc.nextLine();                                                                           // Avslutar program genom att trycka e eller E
+                String choice = sc.nextLine();                             // Avslutar program genom att trycka e eller E
 
                 if (choice.equals("e") || choice.equals("E")) {
-
                     System.out.println("\nexit.");
-                    goingThroughtProgram = false;
-                } else if (choice != "e" || choice != "E") {
-                    System.out.println("\nDu hade väljat fel, prova igen");
+                    isEnabledMeny = false;
+
+                } else if (choice != "e" || choice != "E") {                                 // user choice NOT e or E
+                    System.out.println("\nDu valde fel, prova igen");
                 }
             }
         }
     }
+    public static void printOut_0_to_24_Time(String [] tidenArray) {                                                           // Method för skriva ut array time i tabel i hela row 7
 
-    private static void conectInputArrayWithTidenClass(String[] tidenArray, int[] input, PrisTiden[] prisTidenArray) {
+        for (int i = 0; i < tidenArray.length; i++) {
+            if (i <= 8) {
+                {
+                    tidenArray[i] ="0" + i + " - " + "0" + (i + 1);
+                }
+            }
+            else if (i == 9) {
+                tidenArray[i] = "0" + i + " - " + (i + 1);
+
+            } else {
+                tidenArray[i] = i + " - " + (i + 1);
+            }
+        }
+    }
+    private static void mainMeny() {
+        System.out.println("Elpriser");
+        System.out.println("========");
+        System.out.println("1. Inmatning");
+        System.out.println("2. Min,Max och Medel");
+        System.out.println("3. Sortera");
+        System.out.println("4. Bästa Laddningstid (4h)");
+        System.out.println("5. Visualisering (VG uppgift)");
+        System.out.println("e. avsluta");
+    }
+    private static void menyOfMinMaxMedel() {
+        System.out.println("Välj:");
+        System.out.println("1. Medel av elpris:");
+        System.out.println("2. Min av elpris");
+        System.out.println("3. Max av elpris");
+        System.out.println("4. Exit");
+    }
+    private static void inmatning(Scanner sc, int[] inputPrice, String[] tidenArray, PrisTiden[] prisTidenObject) {
+        for (int i = 0; i < inputPrice.length; i++) {  // set i metoden                                             // Skriver ut tiden och ta inputPrice för el pris från user
+            System.out.println("Skriva in pris av el här : " + tidenArray[i]);
+            getPrice_CoverBug(sc, inputPrice, i);
+        }
+        priceTidenConnect(tidenArray, inputPrice, prisTidenObject);
+    }
+    private static void getPrice_CoverBug(Scanner sc, int[] inputPrice, int i) {
+        try {
+            inputPrice[i] = sc.nextInt();
+        }catch (Exception e){
+            System.out.println("Skriv in en tal.");
+        }
+    }
+    private static void secondMenyMinMaxAverage(int choice, PrisTiden[] prisTidenObject, boolean isEnebledSecondMeny, Scanner sc) {
+
+        int test = choice;
+        menyOfMinMaxMedel();
+        while (isEnebledSecondMeny) {
+
+            int choiceThroghuMinMax = sc.nextInt();
+            menyOfMinMaxMedel();
+            isEnebledSecondMeny = false;
+
+            double sumTwo = 0;
+
+            if (choiceThroghuMinMax == 1) {
+                printOutAverage(prisTidenObject, sumTwo);
+                isEnebledSecondMeny = true;
+
+            } else if (choiceThroghuMinMax == 2) {
+                printOutLowestPrice(prisTidenObject);
+                isEnebledSecondMeny = true;
+
+            } else if (choiceThroghuMinMax == 3) {
+                printOutMaxPrice(prisTidenObject);
+                isEnebledSecondMeny = true;
+
+            } else {
+                if (choiceThroghuMinMax == 4) { // going to main Meny
+                    System.out.println("Du valde EXIT tillbaka till main-meny ");
+                    isEnebledSecondMeny = false;
+                } else {
+                    System.out.println("Du valt fel, prova igen");
+                }
+            }
+        }
+    }
+    private static void printOutAverage(PrisTiden[] prisTidenObject, double sumTwo) {
+        double average = getAverage(prisTidenObject, sumTwo);
+        System.out.println("\nMedelpriset är " + average);
+    }
+    private static void printOutLowestPrice(PrisTiden[] prisTidenObject) {
+        PrisTiden[] prisTidensArrayCopy = Arrays.copyOf(prisTidenObject, prisTidenObject.length);
+
+        sorteringPrisTidenConnect(prisTidensArrayCopy);
+
+        for (int i = 0; i < 1; i++) {
+            System.out.println("\nDet billigaste priset är kl: " + prisTidensArrayCopy[0].getTime() + " och priset är: " + prisTidensArrayCopy[0].getPris() + " öre");
+        }
+    }
+    private static void printOutMaxPrice(PrisTiden[] prisTidenObject) {
+        PrisTiden[] prisTidensArrayCopy = Arrays.copyOf(prisTidenObject, prisTidenObject.length);
+
+        sorteringPrisTidenConnect(prisTidensArrayCopy);
+
+        for (int i = 0; i < 1; i++) {
+            System.out.println("\nDet billigaste priset är kl " + prisTidensArrayCopy[prisTidensArrayCopy.length - 1].getTime() + " och priset är: " + prisTidensArrayCopy[prisTidensArrayCopy.length - 1].getPris() + " öre");
+        }
+    }
+    private static void priceTidenConnect(String[] tidenArray, int[] input, PrisTiden[] prisTidenObject) {
         for (int j = 0; j < input.length; j++) {
-            prisTidenArray[j] = new PrisTiden();
-            prisTidenArray[j].time = tidenArray[j];
-            prisTidenArray[j].setCost(input[j]);
+            prisTidenObject[j] = new PrisTiden();
+            prisTidenObject[j].setTime( tidenArray[j]);
+            prisTidenObject[j].setPris(input[j]);
         }
     }
+    public static PrisTiden[] sorteringPrisTidenConnect (PrisTiden[] prisTidenArray){
 
-    private static double getAverage(PrisTiden[] prisTidenArray, double sumTwo) {
-        for (int i = 0; i < prisTidenArray.length; i++) {
-            sumTwo += prisTidenArray[i].getCost();
+
+        boolean sortingBubble = true;
+
+        while (sortingBubble) {
+            sortingBubble = false;
+            for (int i = 0; i < prisTidenArray.length - 1; i++) {
+                if (prisTidenArray[i].getPris() > prisTidenArray[i + 1].getPris()) {
+                    PrisTiden temp = prisTidenArray[i + 1];
+                    prisTidenArray[i + 1] = prisTidenArray[i];
+                    prisTidenArray[i] = temp;
+                    sortingBubble = true;
+
+                }
+            }
         }
-        double average = sumTwo / 2;
-        return average;
+        return prisTidenArray;
     }
+    private static double getAverage(PrisTiden[] prisTidenObject, double sumTwo) {
+        for (int i = 0; i < prisTidenObject.length; i++) {
+            sumTwo += prisTidenObject[i].getPris();
+        }
+        return sumTwo / 24;
+    }
+    public static void sorteringPrisTidenConnect_PrintOut(PrisTiden[] prisTidensObject) {
+        PrisTiden[] prisTidenArrayCopy = Arrays.copyOf(prisTidensObject,prisTidensObject.length);
 
-    private static void bestCharchingTime(PrisTiden[] prisTidenArray) {
+        sorteringPrisTidenConnect(prisTidenArrayCopy);
 
 
-        PrisTiden[] timerClone = prisTidenArray.clone();
+        for (int i = 0; i < prisTidenArrayCopy.length; i++) {
+            System.out.println(prisTidenArrayCopy[i].getTime() + " " + prisTidenArrayCopy[i].getPris() + " öre");
+        }
+    }
+    private static void bestChargingTime(PrisTiden[] prisTidenObject) {
+
+
+        PrisTiden[] timerCopy =Arrays.copyOf(prisTidenObject,prisTidenObject.length);
 
 
         int fourHourPris = 0;
@@ -246,54 +219,90 @@ public class Main {
         double prisForBestaLaddning = 0;
         String testBestPris = "";
 
-        for (int i = 0; i < timerClone.length; i++) {
-            if (i == timerClone.length - 3) {
+        for (int i = 0; i < timerCopy.length; i++) {
+            if (i == timerCopy.length - 3) {
                 break;
             }
-            fourHourPris = timerClone[i].getCost() + timerClone[i + 1].getCost() + timerClone[i + 2].getCost() + timerClone[i + 3].getCost();
+            fourHourPris = getFourHourPris(timerCopy, i);
             if (fourHourPris < bestPris) {
                 bestPris = fourHourPris;
-                testBestPris = increasing4hThroPrisTiden(timerClone, i);
+                testBestPris = increasing4hThroughPrisTiden(timerCopy, i);
 
-                prisForBestaLaddning = timerClone[i].getCost() + timerClone[i + 1].getCost() + timerClone[i + 2].getCost() + timerClone[i + 3].getCost();
+                prisForBestaLaddning = getFourHourPris(timerCopy, i);
             }
-            genomsnitBestaPris = prisForBestaLaddning / 2;
+            genomsnitBestaPris = prisForBestaLaddning / 4;
 
         }
 
 
-        System.out.println(testBestPris);
-        System.out.println(genomsnitBestaPris + " - är genomsnit pris för bästa laddning");
+        System.out.println(testBestPris );
+        System.out.println(genomsnitBestaPris + " - är genomsnittligt pris för bästa laddning");
 
     }
-
-    private static String increasing4hThroPrisTiden(PrisTiden[] timerClone, int i) {
-        return timerClone[i].time + " " + timerClone[i].getCost() + "  \n" + timerClone[i + 1].time + " " + timerClone[i + 1].getCost() +
-                "  \n" + timerClone[i + 2].time + " " + timerClone[i + 2].getCost() + "  \n" + timerClone[i + 3].time + " " + timerClone[i + 3].getCost();
+    private static int getFourHourPris(PrisTiden[] timerCopy, int i) {
+        return timerCopy[i].getPris() + timerCopy[i + 1].getPris() + timerCopy[i + 2].getPris() + timerCopy[i + 3].getPris();
     }
+    private static String increasing4hThroughPrisTiden(PrisTiden[] timerClone, int i) {
+        return timerClone[i].getTime() + " " + timerClone[i].getPris() + " öre  \n" + timerClone[i + 1].getTime() + " " + timerClone[i + 1].getPris() + " öre   \n" + timerClone[i + 2].getTime() + " " + timerClone[i + 2].getPris() + " öre   \n" + timerClone[i + 3].getTime() + " " + timerClone[i + 3].getPris() + " öre";
+    }
+    public static void tableVG(int[] input) {
 
-    public static void bubbleSorteringOfPrisAndTimeWillFollowIT(PrisTiden prisTidenArray[]) {
-        PrisTiden[] prisTidenArrayCopy = prisTidenArray.clone();
+        int[] inputClone = Arrays.copyOf(input,input.length);
 
-        boolean sortingBubble = true;
+        bubbleSorteringMinAndMax(inputClone);
 
-        while (sortingBubble) {
-            sortingBubble = false;
-            for (int i = 0; i < prisTidenArrayCopy.length - 1; i++) {
-                if (prisTidenArrayCopy[i].getCost() > prisTidenArrayCopy[i + 1].getCost()) {
-                    PrisTiden temp = prisTidenArrayCopy[i + 1];
-                    prisTidenArrayCopy[i + 1] = prisTidenArrayCopy[i];
-                    prisTidenArrayCopy[i] = temp;
-                    sortingBubble = true;
+        final int different = inputClone[inputClone.length-1]/ 10;
+        //((num + 99) / 100 ) * 100 round the number to higher number
+        final int maxProcent = ((inputClone[input.length - 1] + different - 1) / different) * different;
 
+
+        int spacer = Integer.toString(maxProcent).length();
+
+        for (int procent = maxProcent; procent >= 0; ) {
+
+            int nextValue = procent - different;
+
+            xPlacer(procent + "  ");
+            xPlacer(" ".repeat(spacer - Integer.toString(procent).length()) + "|");
+
+            int placeHour = 0;
+
+            for (int hour = 0; hour < input.length; hour++) {
+                if (input[hour] >= procent && input[hour] > nextValue) {
+
+                    xPlacer(" ".repeat((hour - placeHour) * 2) + "x");
+
+                    placeHour = hour;
+                } else {
+                    System.out.print(" ");
                 }
             }
+
+            System.out.println();
+            procent = nextValue;
+
         }
-        for (int i = 0; i < prisTidenArrayCopy.length; i++) {
-            System.out.println(prisTidenArrayCopy[i].time + " " + prisTidenArrayCopy[i].cost + " öre");
+
+        xPlacer(" ".repeat(spacer + 3));
+
+        printOutTiden(inputClone.length);
+
+    }
+    private static void xPlacer(String hour) {
+        System.out.print(hour);
+    }
+    public static void printOutTiden(int tiden) {                                                           // Method för skriva ut array time i tabel i hela row 7
+
+        for (int i = 0; i < tiden; i++) {
+            if (i < 10) {
+                xPlacer("0" + i);
+            } else {
+                System.out.print(i);
+            }
+            xPlacer(" ");
         }
     }
-    public static int[] bubbleSorteringMinAndMax(int[] input) {                                                                   // Bubble sortering algoritam
+    public static int[] bubbleSorteringMinAndMax(int[] input) {                            // Bubble sortering algoritam
         boolean sortingBubble = true;
 
         while (sortingBubble) {
@@ -310,274 +319,8 @@ public class Main {
         return input;
     }
 
-
-    public static void tabelVG(int[] input) {                                                           // Skriver ut tabel
-
-
-        String[] tiden = {"00", "01", "02", "03", "04", "05", "06", "07",                                               // array for tiden att skriva ut i diagram
-                "08", "09", "10", "11", "12", "13", "14", "15", "16", "17",
-                "18", "19", "20", "21", "22", "23"};
-
-
-        int[][] rowColumns = new int[8][51];
-
-        for (int i = 0; i < rowColumns.length; i++) {
-            for (int j = 0; j < rowColumns[i].length; j++) {
-
-
-                if (j == 1) System.out.print("|");
-                else if (i == 7 && j == 0) System.out.print("   ");
-                else if (i == 6 && j == 0) System.out.print("0  ");
-                else if (i == 5 && j == 0) System.out.print("10 ");
-                else if (i == 4 && j == 0) System.out.print("20 ");
-                else if (i == 3 && j == 0) System.out.print("30 ");
-                else if (i == 2 && j == 0) System.out.print("40 ");
-                else if (i == 1 && j == 0) System.out.print("50 ");
-                else if (i == 0 && j == 0) System.out.print("60+");
-
-
-                else if (input[0] > 0 && input[0] <= 10 && j == 2 && i == 6)                                               // input [0] printing out in tabel
-                    System.out.print("x ");
-                else if (input[0] > 10 && input[0] <= 20 && j == 2 && i <= 6 && i >= 5) System.out.print("x ");
-                else if (input[0] > 20 && input[0] <= 30 && j == 2 && i <= 6 && i >= 4) System.out.print("x ");
-                else if (input[0] > 30 && input[0] <= 40 && j == 2 && i <= 6 && i >= 3) System.out.print("x ");
-                else if (input[0] > 40 && input[0] <= 50 && j == 2 && i <= 6 && i >= 2) System.out.print("x ");
-                else if (input[0] > 50 && input[0] <= 60 && j == 2 && i <= 6 && i >= 1) System.out.print("x ");
-                else if (input[0] > 60 && j == 2 && i <= 6) System.out.print("x ");
-
-                else if (input[1] > 0 && input[1] <= 10 && j == 4 && i == 6)                                               // input [1] printing out in tabel
-                    System.out.print("x ");
-                else if (input[1] > 10 && input[1] <= 20 && j == 4 && i <= 6 && i >= 5) System.out.print("x ");
-                else if (input[1] > 20 && input[1] <= 30 && j == 4 && i <= 6 && i >= 4) System.out.print("x ");
-                else if (input[1] > 30 && input[1] <= 40 && j == 4 && i <= 6 && i >= 3) System.out.print("x ");
-                else if (input[1] > 40 && input[1] <= 50 && j == 4 && i <= 6 && i >= 2) System.out.print("x ");
-                else if (input[1] > 50 && input[1] <= 60 && j == 4 && i <= 6 && i >= 1) System.out.print("x ");
-                else if (input[1] > 60 && j == 4 && i <= 6) System.out.print("x ");
-
-                else if (input[2] > 0 && input[2] <= 10 && j == 6 && i == 6)                                               // input [2] printing out in tabel
-                    System.out.print("x ");
-                else if (input[2] > 10 && input[2] <= 20 && j == 6 && i <= 6 && i >= 5) System.out.print("x ");
-                else if (input[2] > 20 && input[2] <= 30 && j == 6 && i <= 6 && i >= 4) System.out.print("x ");
-                else if (input[2] > 30 && input[2] <= 40 && j == 6 && i <= 6 && i >= 3) System.out.print("x ");
-                else if (input[2] > 40 && input[2] <= 50 && j == 6 && i <= 6 && i >= 2) System.out.print("x ");
-                else if (input[2] > 50 && input[2] <= 60 && j == 6 && i <= 6 && i >= 1) System.out.print("x ");
-                else if (input[2] > 60 && j == 6 && i <= 6) System.out.print("x ");
-//
-                else if (input[3] > 0 && input[3] <= 10 && j == 8 && i == 6)                                               // input [3] printing out in tabel
-                    System.out.print("x ");
-                else if (input[3] > 10 && input[3] <= 20 && j == 8 && i <= 6 && i >= 5) System.out.print("x ");
-                else if (input[3] > 20 && input[3] <= 30 && j == 8 && i <= 6 && i >= 4) System.out.print("x ");
-                else if (input[3] > 30 && input[3] <= 40 && j == 8 && i <= 6 && i >= 3) System.out.print("x ");
-                else if (input[3] > 40 && input[3] <= 50 && j == 8 && i <= 6 && i >= 2) System.out.print("x ");
-                else if (input[3] > 50 && input[3] <= 60 && j == 8 && i <= 6 && i >= 1) System.out.print("x ");
-                else if (input[3] > 60 && j == 8 && i <= 6) System.out.print("x ");
-//
-                else if (input[4] > 0 && input[4] <= 10 && j == 10 && i == 6)                                               // input [4] printing out in tabel
-                    System.out.print("x ");
-                else if (input[4] > 10 && input[4] <= 20 && j == 10 && i <= 6 && i >= 5) System.out.print("x ");
-                else if (input[4] > 20 && input[4] <= 30 && j == 10 && i <= 6 && i >= 4) System.out.print("x ");
-                else if (input[4] > 30 && input[4] <= 40 && j == 10 && i <= 6 && i >= 3) System.out.print("x ");
-                else if (input[4] > 40 && input[4] <= 50 && j == 10 && i <= 6 && i >= 2) System.out.print("x ");
-                else if (input[4] > 50 && input[4] <= 60 && j == 10 && i <= 6 && i >= 1) System.out.print("x ");
-                else if (input[4] > 60 && j == 10 && i <= 6) System.out.print("x ");
-
-                else if (input[5] > 0 && input[5] <= 10 && j == 12 && i == 6)                                               // input [5] printing out in tabel
-                    System.out.print("x ");
-                else if (input[5] > 10 && input[5] <= 20 && j == 12 && i <= 6 && i >= 5) System.out.print("x ");
-                else if (input[5] > 20 && input[5] <= 30 && j == 12 && i <= 6 && i >= 4) System.out.print("x ");
-                else if (input[5] > 30 && input[5] <= 40 && j == 12 && i <= 6 && i >= 3) System.out.print("x ");
-                else if (input[5] > 40 && input[5] <= 50 && j == 12 && i <= 6 && i >= 2) System.out.print("x ");
-                else if (input[5] > 50 && input[5] <= 60 && j == 12 && i <= 6 && i >= 1) System.out.print("x ");
-                else if (input[5] > 60 && j == 12 && i <= 6) System.out.print("x ");
-
-                else if (input[6] > 0 && input[6] <= 10 && j == 14 && i == 6)                                               // input [6] printing out in tabel
-                    System.out.print("x ");
-                else if (input[6] > 10 && input[6] <= 20 && j == 14 && i <= 6 && i >= 5) System.out.print("x ");
-                else if (input[6] > 20 && input[6] <= 30 && j == 14 && i <= 6 && i >= 4) System.out.print("x ");
-                else if (input[6] > 30 && input[6] <= 40 && j == 14 && i <= 6 && i >= 3) System.out.print("x ");
-                else if (input[6] > 40 && input[6] <= 50 && j == 14 && i <= 6 && i >= 2) System.out.print("x ");
-                else if (input[6] > 50 && input[6] <= 60 && j == 14 && i <= 6 && i >= 1) System.out.print("x ");
-                else if (input[6] > 60 && j == 14 && i <= 6) System.out.print("x ");
-
-                else if (input[7] > 0 && input[7] <= 10 && j == 16 && i == 6)                                               // input [7] printing out in tabel
-                    System.out.print("x ");
-                else if (input[7] > 10 && input[7] <= 20 && j == 16 && i <= 6 && i >= 5) System.out.print("x ");
-                else if (input[7] > 20 && input[7] <= 30 && j == 16 && i <= 6 && i >= 4) System.out.print("x ");
-                else if (input[7] > 30 && input[7] <= 40 && j == 16 && i <= 6 && i >= 3) System.out.print("x ");
-                else if (input[7] > 40 && input[7] <= 50 && j == 16 && i <= 6 && i >= 2) System.out.print("x ");
-                else if (input[7] > 50 && input[7] <= 60 && j == 16 && i <= 6 && i >= 1) System.out.print("x ");
-                else if (input[7] > 60 && j == 16 && i <= 6) System.out.print("x ");
-
-                else if (input[8] > 0 && input[8] <= 10 && j == 18 && i == 6)                                               // input [8] printing out in tabel
-                    System.out.print("x ");
-                else if (input[8] > 10 && input[8] <= 20 && j == 18 && i <= 6 && i >= 5) System.out.print("x ");
-                else if (input[8] > 20 && input[8] <= 30 && j == 18 && i <= 6 && i >= 4) System.out.print("x ");
-                else if (input[8] > 30 && input[8] <= 40 && j == 18 && i <= 6 && i >= 3) System.out.print("x ");
-                else if (input[8] > 40 && input[8] <= 50 && j == 18 && i <= 6 && i >= 2) System.out.print("x ");
-                else if (input[8] > 50 && input[8] <= 60 && j == 18 && i <= 6 && i >= 1) System.out.print("x ");
-                else if (input[8] > 60 && j == 18 && i <= 6) System.out.print("x ");
-
-                else if (input[9] > 0 && input[9] <= 10 && j == 20 && i == 6)                                               // input [9] printing out in tabel
-                    System.out.print("x ");
-                else if (input[9] > 10 && input[9] <= 20 && j == 20 && i <= 6 && i >= 5) System.out.print("x ");
-                else if (input[9] > 20 && input[9] <= 30 && j == 20 && i <= 6 && i >= 4) System.out.print("x ");
-                else if (input[9] > 30 && input[9] <= 40 && j == 20 && i <= 6 && i >= 3) System.out.print("x ");
-                else if (input[9] > 40 && input[9] <= 50 && j == 20 && i <= 6 && i >= 2) System.out.print("x ");
-                else if (input[9] > 50 && input[9] <= 60 && j == 20 && i <= 6 && i >= 1) System.out.print("x ");
-                else if (input[9] > 60 && j == 20 && i <= 6) System.out.print("x ");
-
-                else if (input[10] > 0 && input[10] <= 10 && j == 22 && i == 6)                                               // input [10] printing out in tabel
-                    System.out.print("x ");
-                else if (input[10] > 10 && input[10] <= 20 && j == 22 && i <= 6 && i >= 5) System.out.print("x ");
-                else if (input[10] > 20 && input[10] <= 30 && j == 22 && i <= 6 && i >= 4) System.out.print("x ");
-                else if (input[10] > 30 && input[10] <= 40 && j == 22 && i <= 6 && i >= 3) System.out.print("x ");
-                else if (input[10] > 40 && input[10] <= 50 && j == 22 && i <= 6 && i >= 2) System.out.print("x ");
-                else if (input[10] > 50 && input[10] <= 60 && j == 22 && i <= 6 && i >= 1) System.out.print("x ");
-                else if (input[10] > 60 && j == 22 && i <= 6) System.out.print("x ");
-
-                else if (input[11] > 0 && input[11] <= 10 && j == 24 && i == 6)                                               // input [11] printing out in tabel
-                    System.out.print("x ");
-                else if (input[11] > 10 && input[11] <= 20 && j == 24 && i <= 6 && i >= 5) System.out.print("x ");
-                else if (input[11] > 20 && input[11] <= 30 && j == 24 && i <= 6 && i >= 4) System.out.print("x ");
-                else if (input[11] > 30 && input[11] <= 40 && j == 24 && i <= 6 && i >= 3) System.out.print("x ");
-                else if (input[11] > 40 && input[11] <= 50 && j == 24 && i <= 6 && i >= 2) System.out.print("x ");
-                else if (input[11] > 50 && input[11] <= 60 && j == 24 && i <= 6 && i >= 1) System.out.print("x ");
-                else if (input[11] > 60 && j == 24 && i <= 6) System.out.print("x ");
-
-                else if (input[12] > 0 && input[12] <= 10 && j == 26 && i == 6)                                               // input [12] printing out in tabel
-                    System.out.print("x ");
-                else if (input[12] > 10 && input[12] <= 20 && j == 26 && i <= 6 && i >= 5) System.out.print("x ");
-                else if (input[12] > 20 && input[12] <= 30 && j == 26 && i <= 6 && i >= 4) System.out.print("x ");
-                else if (input[12] > 30 && input[12] <= 40 && j == 26 && i <= 6 && i >= 3) System.out.print("x ");
-                else if (input[12] > 40 && input[12] <= 50 && j == 26 && i <= 6 && i >= 2) System.out.print("x ");
-                else if (input[12] > 50 && input[12] <= 60 && j == 26 && i <= 6 && i >= 1) System.out.print("x ");
-                else if (input[12] > 60 && j == 26 && i <= 6) System.out.print("x ");
-
-                else if (input[13] > 0 && input[13] <= 10 && j == 28 && i == 6)                                               // input [13] printing out in tabel
-                    System.out.print("x ");
-                else if (input[13] > 10 && input[13] <= 20 && j == 28 && i <= 6 && i >= 5) System.out.print("x ");
-                else if (input[13] > 20 && input[13] <= 30 && j == 28 && i <= 6 && i >= 4) System.out.print("x ");
-                else if (input[13] > 30 && input[13] <= 40 && j == 28 && i <= 6 && i >= 3) System.out.print("x ");
-                else if (input[13] > 40 && input[13] <= 50 && j == 28 && i <= 6 && i >= 2) System.out.print("x ");
-                else if (input[13] > 50 && input[13] <= 60 && j == 28 && i <= 6 && i >= 1) System.out.print("x ");
-                else if (input[13] > 60 && j == 28 && i <= 6) System.out.print("x ");
-
-                else if (input[14] > 0 && input[14] <= 10 && j == 30 && i == 6)                                               // input [14] printing out in tabel
-                    System.out.print("x ");
-                else if (input[14] > 10 && input[14] <= 20 && j == 30 && i <= 6 && i >= 5) System.out.print("x ");
-                else if (input[14] > 20 && input[14] <= 30 && j == 30 && i <= 6 && i >= 4) System.out.print("x ");
-                else if (input[14] > 30 && input[14] <= 40 && j == 30 && i <= 6 && i >= 3) System.out.print("x ");
-                else if (input[14] > 40 && input[14] <= 50 && j == 30 && i <= 6 && i >= 2) System.out.print("x ");
-                else if (input[14] > 50 && input[14] <= 60 && j == 30 && i <= 6 && i >= 1) System.out.print("x ");
-                else if (input[14] > 60 && j == 30 && i <= 6) System.out.print("x ");
-
-                else if (input[15] > 0 && input[15] <= 10 && j == 32 && i == 6)                                               // input [15] printing out in tabel
-                    System.out.print("x ");
-                else if (input[15] > 10 && input[15] <= 20 && j == 32 && i <= 6 && i >= 5) System.out.print("x ");
-                else if (input[15] > 20 && input[15] <= 30 && j == 32 && i <= 6 && i >= 4) System.out.print("x ");
-                else if (input[15] > 30 && input[15] <= 40 && j == 32 && i <= 6 && i >= 3) System.out.print("x ");
-                else if (input[15] > 40 && input[15] <= 50 && j == 32 && i <= 6 && i >= 2) System.out.print("x ");
-                else if (input[15] > 50 && input[15] <= 60 && j == 32 && i <= 6 && i >= 1) System.out.print("x ");
-                else if (input[15] > 60 && j == 32 && i <= 6) System.out.print("x ");
-
-                else if (input[16] > 0 && input[16] <= 10 && j == 34 && i == 6)                                               // input [16] printing out in tabel
-                    System.out.print("x ");
-                else if (input[16] > 10 && input[16] <= 20 && j == 34 && i <= 6 && i >= 5) System.out.print("x ");
-                else if (input[16] > 20 && input[16] <= 30 && j == 34 && i <= 6 && i >= 4) System.out.print("x ");
-                else if (input[16] > 30 && input[16] <= 40 && j == 34 && i <= 6 && i >= 3) System.out.print("x ");
-                else if (input[16] > 40 && input[16] <= 50 && j == 34 && i <= 6 && i >= 2) System.out.print("x ");
-                else if (input[16] > 50 && input[16] <= 60 && j == 34 && i <= 6 && i >= 1) System.out.print("x ");
-                else if (input[16] > 60 && j == 34 && i <= 6) System.out.print("x ");
-
-
-                else if (input[17] > 0 && input[17] <= 10 && j == 36 && i == 6)                                               // input [18] printing out in tabel
-                    System.out.print("x ");
-                else if (input[17] > 10 && input[17] <= 20 && j == 36 && i <= 6 && i >= 5) System.out.print("x ");
-                else if (input[17] > 20 && input[17] <= 30 && j == 36 && i <= 6 && i >= 4) System.out.print("x ");
-                else if (input[17] > 30 && input[17] <= 40 && j == 36 && i <= 6 && i >= 3) System.out.print("x ");
-                else if (input[17] > 40 && input[17] <= 50 && j == 36 && i <= 6 && i >= 2) System.out.print("x ");
-                else if (input[17] > 50 && input[17] <= 60 && j == 36 && i <= 6 && i >= 1) System.out.print("x ");
-                else if (input[17] > 60 && j == 38 && i <= 6) System.out.print("x ");
-
-                else if (input[18] > 0 && input[18] <= 10 && j == 38 && i == 6)                                               // input [18] printing out in tabel
-                    System.out.print("x ");
-                else if (input[18] > 10 && input[18] <= 20 && j == 38 && i <= 6 && i >= 5) System.out.print("x ");
-                else if (input[18] > 20 && input[18] <= 30 && j == 38 && i <= 6 && i >= 4) System.out.print("x ");
-                else if (input[18] > 30 && input[18] <= 40 && j == 38 && i <= 6 && i >= 3) System.out.print("x ");
-                else if (input[18] > 40 && input[18] <= 50 && j == 38 && i <= 6 && i >= 2) System.out.print("x ");
-                else if (input[18] > 50 && input[18] <= 60 && j == 38 && i <= 6 && i >= 1) System.out.print("x ");
-                else if (input[18] > 60 && j == 40 && i <= 6) System.out.print("x ");
-
-                else if (input[19] > 0 && input[19] <= 10 && j == 40 && i == 6)                                               // input [19] printing out in tabel
-                    System.out.print("x ");
-                else if (input[19] > 10 && input[19] <= 20 && j == 40 && i <= 6 && i >= 5) System.out.print("x ");
-                else if (input[19] > 20 && input[19] <= 30 && j == 40 && i <= 6 && i >= 4) System.out.print("x ");
-                else if (input[19] > 30 && input[19] <= 40 && j == 40 && i <= 6 && i >= 3) System.out.print("x ");
-                else if (input[19] > 40 && input[19] <= 50 && j == 40 && i <= 6 && i >= 2) System.out.print("x ");
-                else if (input[19] > 50 && input[19] <= 60 && j == 40 && i <= 6 && i >= 1) System.out.print("x ");
-                else if (input[19] > 60 && j == 42 && i <= 6) System.out.print("x ");
-
-                else if (input[20] > 0 && input[20] <= 10 && j == 42 && i == 6)                                               // input [20] printing out in tabel
-                    System.out.print("x ");
-                else if (input[20] > 10 && input[20] <= 20 && j == 42 && i <= 6 && i >= 5) System.out.print("x ");
-                else if (input[20] > 20 && input[20] <= 30 && j == 42 && i <= 6 && i >= 4) System.out.print("x ");
-                else if (input[20] > 30 && input[20] <= 40 && j == 42 && i <= 6 && i >= 3) System.out.print("x ");
-                else if (input[20] > 40 && input[20] <= 50 && j == 42 && i <= 6 && i >= 2) System.out.print("x ");
-                else if (input[20] > 50 && input[20] <= 60 && j == 42 && i <= 6 && i >= 1) System.out.print("x ");
-                else if (input[20] > 60 && j == 44 && i <= 6) System.out.print("x ");
-
-                else if (input[21] > 0 && input[21] <= 10 && j == 44 && i == 6)                                               // input [21] printing out in tabel
-                    System.out.print("x ");
-                else if (input[21] > 10 && input[21] <= 20 && j == 44 && i <= 6 && i >= 5) System.out.print("x ");
-                else if (input[21] > 20 && input[21] <= 30 && j == 44 && i <= 6 && i >= 4) System.out.print("x ");
-                else if (input[21] > 30 && input[21] <= 40 && j == 44 && i <= 6 && i >= 3) System.out.print("x ");
-                else if (input[21] > 40 && input[21] <= 50 && j == 44 && i <= 6 && i >= 2) System.out.print("x ");
-                else if (input[21] > 50 && input[21] <= 60 && j == 44 && i <= 6 && i >= 1) System.out.print("x ");
-                else if (input[21] > 60 && j == 46 && i <= 6) System.out.print("x ");
-
-                else if (input[22] > 0 && input[22] <= 10 && j == 46 && i == 6)                                               // input [22] printing out in tabel
-                    System.out.print("x ");
-                else if (input[22] > 10 && input[22] <= 20 && j == 46 && i <= 6 && i >= 5) System.out.print("x ");
-                else if (input[22] > 20 && input[22] <= 30 && j == 46 && i <= 6 && i >= 4) System.out.print("x ");
-                else if (input[22] > 30 && input[22] <= 40 && j == 46 && i <= 6 && i >= 3) System.out.print("x ");
-                else if (input[22] > 40 && input[22] <= 50 && j == 46 && i <= 6 && i >= 2) System.out.print("x ");
-                else if (input[22] > 50 && input[22] <= 60 && j == 46 && i <= 6 && i >= 1) System.out.print("x ");
-                else if (input[22] > 60 && j == 48 && i <= 6) System.out.print("x ");
-
-                else if (input[23] > 0 && input[23] <= 10 && j == 48 && i == 6)
-                    System.out.print("x ");
-                else if (input[23] > 10 && input[23] <= 20 && j == 48 && i <= 6 && i >= 5)
-                    System.out.print("x ");      // input [23] printing out in tabel
-                else if (input[23] > 20 && input[23] <= 30 && j == 48 && i <= 6 && i >= 4) System.out.print("x ");
-                else if (input[23] > 30 && input[23] <= 40 && j == 48 && i <= 6 && i >= 3) System.out.print("x ");
-                else if (input[23] > 40 && input[23] <= 50 && j == 48 && i <= 6 && i >= 2) System.out.print("x ");
-                else if (input[23] > 50 && input[23] <= 60 && j == 48 && i <= 6 && i >= 1) System.out.print("x ");
-                else if (input[23] > 60 && j == 50 && i <= 6) System.out.print("x ");
-
-
-                else if (j == 3 || j == 5 || j == 7 || j == 9 || j == 11 || j == 13 || j == 15 || j == 17 ||        // Making in row free space
-                        j == 19 || j == 21 || j == 23 || j == 25 || j == 27 || j == 29 || j == 31 || j == 33 ||
-                        j == 35 || j == 37 || j == 39 || j == 41 || j == 43 || j == 45 || j == 47 || j == 49 || j
-                        == 50 || i == 7 && j == 50) {
-                    System.out.print(" ");
-                } else if (i >= 7) {
-                    printOutTiden(tiden);
-                    break;
-                } else System.out.print("  ");
-            }
-            System.out.println("");
-        }
-    }
-
-
-    public static String[] printOutTiden(String[] tiden) {                                                           // Method för skriva ut array time i tabel i hela row 7
-
-        for (int i = 0; i < 24; i++) {
-            System.out.print(tiden[i] + " ");
-        }
-        return tiden;
-    }
 }
+
 
 
 
